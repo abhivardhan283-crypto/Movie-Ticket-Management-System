@@ -3,117 +3,599 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Movie Ticket Management System</title>
+    <title>Movie Ticket Management System | Data Analytics Project</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Plotly.js for static charts -->
+    <script src="https://cdn.plot.ly/plotly-2.24.1.min.js"></script>
     <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --light-bg: #f8f9fa;
+            --dark-bg: #2c3e50;
+        }
+        
         body {
-            font-family: Arial, sans-serif;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
-        }
-        .container {
-            background: #f5f5f5;
-            padding: 30px;
-            border-radius: 10px;
-            margin: 20px 0;
-        }
-        h1 {
             color: #333;
-            border-bottom: 3px solid #007bff;
-            padding-bottom: 10px;
         }
-        .btn {
-            display: inline-block;
-            background: #007bff;
+        
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
             color: white;
-            padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 5px;
-            margin: 10px 5px;
+            padding: 100px 0;
+            text-align: center;
         }
-        .btn:hover {
-            background: #0056b3;
+        
+        .feature-card {
+            border: none;
+            border-radius: 10px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            height: 100%;
+            background-color: white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
-        .warning {
-            background: #fff3cd;
-            border: 1px solid #ffeaa7;
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+        }
+        
+        .section-title {
+            position: relative;
+            padding-bottom: 15px;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            width: 70px;
+            height: 3px;
+            background: var(--secondary-color);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .tech-badge {
+            background-color: var(--light-bg);
+            color: var(--primary-color);
+            padding: 8px 15px;
+            border-radius: 20px;
+            margin: 5px;
+            display: inline-block;
+            font-weight: 500;
+        }
+        
+        .database-schema {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            overflow-x: auto;
+        }
+        
+        .chart-container {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+        }
+        
+        .footer {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 40px 0;
+            margin-top: 60px;
+        }
+        
+        .code-block {
+            background-color: #2d3748;
+            color: #e2e8f0;
             padding: 15px;
-            border-radius: 5px;
-            margin: 20px 0;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
         }
-        .feature {
-            background: white;
-            padding: 15px;
-            margin: 10px 0;
-            border-left: 4px solid #007bff;
+        
+        .warning-box {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 30px 0;
+        }
+        
+        .preview-img {
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #eaeaea;
+        }
+        
+        .stats-card {
+            text-align: center;
+            padding: 25px 15px;
+            border-radius: 10px;
+            background-color: white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            height: 100%;
+        }
+        
+        .stats-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--secondary-color);
+            margin-bottom: 10px;
         }
     </style>
 </head>
 <body>
-    <h1>🎬 Movie Ticket Management System</h1>
-    
-    <div class="warning">
-        <strong>Note:</strong> This project contains Jupyter notebooks with interactive visualizations. 
-        To view the full interactive content with charts and graphs, please:
-        <ol>
-            <li>Clone the repository locally</li>
-            <li>Install dependencies: <code>pip install pandas numpy matplotlib seaborn plotly sqlite3</code></li>
-            <li>Open the notebook in Jupyter: <code>jupyter notebook</code></li>
-        </ol>
-    </div>
-    
-    <div class="container">
-        <h2>Project Overview</h2>
-        <p>A comprehensive movie ticket booking and revenue analytics system built with Python, SQLite, and Plotly.</p>
-        
-        <div class="feature">
-            <h3>📊 Features</h3>
-            <ul>
-                <li>Normalized database schema with 7 tables</li>
-                <li>Comprehensive sample data generation</li>
-                <li>Revenue analytics and business insights</li>
-                <li>Interactive Plotly dashboards</li>
-                <li>SQL query optimization with indexes</li>
-            </ul>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top" style="background-color: var(--primary-color);">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-ticket-alt"></i> Movie Ticket System
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#overview">Overview</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#features">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#database">Database</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#analytics">Analytics</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#setup">Setup</a>
+                    </li>
+                </ul>
+            </div>
         </div>
-        
-        <div class="feature">
-            <h3>🏗️ Database Schema</h3>
-            <p>Normalized relational database with:</p>
-            <ul>
-                <li><strong>Movies</strong> - Movie details and metadata</li>
-                <li><strong>Theatres & Screens</strong> - Venue information</li>
-                <li><strong>Shows</strong> - Screening schedules</li>
-                <li><strong>Customers & Bookings</strong> - Customer management</li>
-                <li><strong>Payments</strong> - Transaction processing</li>
-            </ul>
-        </div>
-        
-        <h3>📁 Project Files</h3>
-        <a href="Movie Ticket Management System.ipynb" class="btn">View Raw Notebook</a>
-        <a href="https://nbviewer.org/github/your-username/your-repo/blob/main/Movie%20Ticket%20Management%20System.ipynb" class="btn">View on nbviewer</a>
-        <a href="movie_ticket_system_v2.db" class="btn">Download Database</a>
-        
-        <h3>🚀 Quick Start</h3>
-        <pre><code>
-# Clone repository
-git clone https://github.com/your-username/your-repo.git
-cd your-repo
+    </nav>
 
-# Install dependencies
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h1 class="display-4 fw-bold mb-4">Movie Ticket Management System</h1>
+                    <p class="lead mb-4">A comprehensive data analytics project for movie theater management, revenue analysis, and business intelligence using Python, SQLite, and interactive visualizations.</p>
+                    <div class="mt-4">
+                        <a href="https://github.com/abhivardhan283-crypto/Movie-Ticket-Management-System" class="btn btn-light btn-lg me-3" target="_blank">
+                            <i class="fab fa-github"></i> View on GitHub
+                        </a>
+                        <a href="Movie Ticket Management System.ipynb" class="btn btn-outline-light btn-lg" download>
+                            <i class="fas fa-download"></i> Download Notebook
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-3">
+                    <div class="stats-card">
+                        <div class="stats-number">7</div>
+                        <p>Normalized Database Tables</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stats-card">
+                        <div class="stats-number">14</div>
+                        <p>Movie Records</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stats-card">
+                        <div class="stats-number">228</div>
+                        <p>Simulated Bookings</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stats-card">
+                        <div class="stats-number">₹2.1L+</div>
+                        <p>Simulated Revenue</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Overview Section -->
+    <section id="overview" class="py-5">
+        <div class="container">
+            <h2 class="section-title">Project Overview</h2>
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <p class="mb-4">This project implements a complete <strong>movie ticket booking and management system</strong> with advanced data analytics capabilities. It simulates real-world theater operations and provides business intelligence through interactive dashboards.</p>
+                    <p class="mb-4">The system handles everything from movie catalog management, theater operations, booking processing, customer management, to comprehensive revenue analytics and visualization.</p>
+                    <div class="mb-4">
+                        <h5>Technologies Used:</h5>
+                        <div class="mt-3">
+                            <span class="tech-badge"><i class="fab fa-python"></i> Python 3</span>
+                            <span class="tech-badge"><i class="fas fa-database"></i> SQLite</span>
+                            <span class="tech-badge"><i class="fas fa-chart-line"></i> Pandas & NumPy</span>
+                            <span class="tech-badge"><i class="fas fa-chart-bar"></i> Plotly</span>
+                            <span class="tech-badge"><i class="fas fa-chart-area"></i> Matplotlib</span>
+                            <span class="tech-badge"><i class="fas fa-chart-pie"></i> Seaborn</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="text-center">
+                        <img src="https://images.unsplash.com/photo-1489599809516-9827b6d1cf13?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
+                             alt="Movie Theater Analytics" class="preview-img">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Warning Box -->
+    <div class="container">
+        <div class="warning-box">
+            <h4><i class="fas fa-exclamation-triangle me-2"></i>Important Note for GitHub Viewers</h4>
+            <p class="mb-0">GitHub cannot execute Jupyter notebooks or display interactive Plotly charts. To experience the full functionality including:</p>
+            <ul class="mt-2">
+                <li>Interactive revenue dashboards</li>
+                <li>Animated Plotly charts</li>
+                <li>Database query execution</li>
+                <li>Live data generation and analysis</li>
+            </ul>
+            <p class="mb-0">Please clone the repository and run the notebook locally or use the nbviewer link below.</p>
+            <div class="mt-3">
+                <a href="https://nbviewer.org/github/abhivardhan283-crypto/Movie-Ticket-Management-System/blob/main/Movie%20Ticket%20Management%20System.ipynb" 
+                   class="btn btn-warning" target="_blank">
+                    <i class="fas fa-external-link-alt"></i> View Interactive Notebook on nbviewer
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Features Section -->
+    <section id="features" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="section-title">Key Features</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="feature-card p-4 text-center">
+                        <div class="feature-icon">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <h4>Normalized Database</h4>
+                        <p>7 normalized tables with proper constraints, foreign keys, and indexes for optimal performance and data integrity.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card p-4 text-center">
+                        <div class="feature-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h4>Revenue Analytics</h4>
+                        <p>Comprehensive revenue analysis including daily trends, top movies, theatre performance, and customer segmentation.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card p-4 text-center">
+                        <div class="feature-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h4>Customer Management</h4>
+                        <p>Complete customer database with loyalty programs, discount tracking, and segmentation (Regular, Premium, Student, Senior).</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card p-4 text-center">
+                        <div class="feature-icon">
+                            <i class="fas fa-film"></i>
+                        </div>
+                        <h4>Show Management</h4>
+                        <p>Dynamic show scheduling across multiple screens (Standard, IMAX, 3D, 4DX, VIP) with real-time seat availability.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card p-4 text-center">
+                        <div class="feature-icon">
+                            <i class="fas fa-credit-card"></i>
+                        </div>
+                        <h4>Payment Processing</h6>
+                        <p>Complete payment system with multiple methods (Credit/Debit, UPI, Net Banking) and refund management.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card p-4 text-center">
+                        <div class="feature-icon">
+                            <i class="fas fa-chart-pie"></i>
+                        </div>
+                        <h4>Interactive Dashboards</h4>
+                        <p>Beautiful Plotly dashboards with 8+ different visualization types for business intelligence.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Database Schema Section -->
+    <section id="database" class="py-5">
+        <div class="container">
+            <h2 class="section-title">Database Schema</h2>
+            <div class="database-schema mb-5">
+                <h5 class="mb-3">ER Diagram Relationships:</h5>
+                <pre style="background-color: transparent; border: none;">
+MOVIES (1) ─────────────── (M) SHOWS (M) ──────────────── (1) SCREENS
+│                                                              │
+│ (M)                                                          │ (1)
+│                                                              │
+↓                                                              ↓
+CUSTOMERS ──────────────────── BOOKINGS (1) ◄──────────────────┤
+│                                                              │
+│ (1)                                                          │
+│                                                              │
+↓                                                              ↓
+PAYMENTS (M)                                            THEATRES (1)
+                </pre>
+                <p class="mt-3"><strong>Key Tables:</strong></p>
+                <ul>
+                    <li><strong>Movies:</strong> Movie details, ratings, production costs</li>
+                    <li><strong>Theatres:</strong> Theatre locations, facilities, capacity</li>
+                    <li><strong>Screens:</strong> Screen types (IMAX, 3D, 4DX, VIP), capacities</li>
+                    <li><strong>Shows:</strong> Show scheduling with dynamic pricing</li>
+                    <li><strong>Customers:</strong> Customer profiles with loyalty points</li>
+                    <li><strong>Bookings:</strong> Booking transactions with seat management</li>
+                    <li><strong>Payments:</strong> Payment processing and refunds</li>
+                </ul>
+            </div>
+            
+            <div class="row mt-4">
+                <div class="col-md-6">
+                    <h5>Sample Database Creation Code:</h5>
+                    <div class="code-block">
+<pre><code>CREATE TABLE Movies (
+    movie_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    title TEXT NOT NULL,
+    genre TEXT,
+    duration_minutes INTEGER,
+    rating DECIMAL(3,1),
+    is_active BOOLEAN DEFAULT 1
+);
+
+CREATE TABLE Shows (
+    show_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    movie_id INTEGER NOT NULL,
+    screen_id INTEGER NOT NULL,
+    show_date DATE NOT NULL,
+    show_time TIME NOT NULL,
+    price DECIMAL(10,2),
+    available_seats INTEGER,
+    FOREIGN KEY (movie_id) REFERENCES Movies(movie_id)
+);</code></pre>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <h5>Sample Data Generation:</h5>
+                    <div class="code-block">
+<pre><code># Generated Sample Data:
+# - 14 movies (Avengers, Dune, RRR, etc.)
+# - 8 theatres across Mumbai, Delhi, Bangalore
+# - 41 screens with different types
+# - 173 shows over 7 days
+# - 50 customers with segmentation
+# - 228 bookings with realistic patterns
+# - 222 payment transactions</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Analytics & Charts Section -->
+    <section id="analytics" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="section-title">Analytics & Visualizations</h2>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="chart-container">
+                        <h4>Revenue Analytics Dashboard (Preview)</h4>
+                        <p>The complete project includes interactive Plotly dashboards with:</p>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <ul>
+                                    <li>Top Movies by Revenue</li>
+                                    <li>Theatre Performance</li>
+                                    <li>Daily Revenue Trends</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-4">
+                                <ul>
+                                    <li>Revenue by Time Slots</li>
+                                    <li>Screen Type Analysis</li>
+                                    <li>Customer Segmentation</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-4">
+                                <ul>
+                                    <li>Payment Method Analysis</li>
+                                    <li>Revenue vs Discounts</li>
+                                    <li>Cumulative Growth</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <!-- Placeholder for chart if we had static images -->
+                        <div class="text-center my-4">
+                            <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); height: 300px; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white;">
+                                <div>
+                                    <i class="fas fa-chart-bar fa-4x mb-3"></i>
+                                    <p>Interactive Plotly Charts Available in Notebook</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <p><strong>Key Metrics from Analysis:</strong></p>
+                        <ul>
+                            <li>Total Revenue Generated: <strong>₹209,346.72</strong></li>
+                            <li>Average Booking Value: <strong>₹1,041</strong></li>
+                            <li>Most Popular Time Slot: <strong>Afternoon (44.19% revenue share)</strong></li>
+                            <li>Top Payment Method: <strong>UPI (35.01% of transactions)</strong></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Setup & Usage Section -->
+    <section id="setup" class="py-5">
+        <div class="container">
+            <h2 class="section-title">Setup & Usage</h2>
+            <div class="row">
+                <div class="col-lg-6">
+                    <h4>Quick Setup Instructions</h4>
+                    <div class="code-block">
+<pre><code># 1. Clone the repository
+git clone https://github.com/abhivardhan283-crypto/Movie-Ticket-Management-System.git
+cd Movie-Ticket-Management-System
+
+# 2. Install required packages
 pip install pandas numpy matplotlib seaborn plotly
 
-# Run the notebook
+# 3. Run the Jupyter notebook
 jupyter notebook "Movie Ticket Management System.ipynb"
-        </code></pre>
-    </div>
+
+# 4. Execute cells in order:
+#    - Import libraries
+#    - Create database schema
+#    - Generate sample data
+#    - Run analytics queries
+#    - View interactive dashboards</code></pre>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <h4>Project Structure</h4>
+                    <div class="code-block">
+<pre><code>Movie-Ticket-Management-System/
+├── Movie Ticket Management System.ipynb  # Main notebook
+├── movie_ticket_system_v2.db            # SQLite database
+├── index.html                           # This page
+├── README.md                            # Documentation
+└── requirements.txt                     # Dependencies</code></pre>
+                    </div>
+                    
+                    <h4 class="mt-4">Features You Can Test</h4>
+                    <ul>
+                        <li>Modify sample data generation parameters</li>
+                        <li>Add new movies, theatres, or shows</li>
+                        <li>Run custom SQL queries on the database</li>
+                        <li>Customize Plotly dashboard layouts</li>
+                        <li>Export analytics to CSV/Excel</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="text-center mt-5">
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <a href="Movie Ticket Management System.ipynb" class="btn btn-primary btn-lg w-100">
+                            <i class="fas fa-file-code"></i> Open Notebook
+                        </a>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <a href="https://github.com/abhivardhan283-crypto/Movie-Ticket-Management-System" class="btn btn-dark btn-lg w-100" target="_blank">
+                            <i class="fab fa-github"></i> GitHub Repository
+                        </a>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <a href="https://nbviewer.org/github/abhivardhan283-crypto/Movie-Ticket-Management-System/blob/main/Movie%20Ticket%20Management%20System.ipynb" class="btn btn-success btn-lg w-100" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> nbviewer (Static)
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <h4><i class="fas fa-ticket-alt"></i> Movie Ticket Management System</h4>
+                    <p>A comprehensive data analytics project for movie theater management and revenue optimization.</p>
+                </div>
+                <div class="col-lg-4">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#overview" class="text-light text-decoration-none">Project Overview</a></li>
+                        <li><a href="#features" class="text-light text-decoration-none">Features</a></li>
+                        <li><a href="#database" class="text-light text-decoration-none">Database Schema</a></li>
+                        <li><a href="#analytics" class="text-light text-decoration-none">Analytics</a></li>
+                        <li><a href="#setup" class="text-light text-decoration-none">Setup Guide</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4">
+                    <h5>Repository Info</h5>
+                    <p><i class="fab fa-github"></i> GitHub: <a href="https://github.com/abhivardhan283-crypto/Movie-Ticket-Management-System" class="text-light">abhivardhan283-crypto/Movie-Ticket-Management-System</a></p>
+                    <p><i class="fas fa-user"></i> Created by: Abhivardhan</p>
+                    <p><i class="fas fa-code"></i> Technology Stack: Python, SQLite, Pandas, Plotly</p>
+                </div>
+            </div>
+            <hr class="bg-light">
+            <div class="text-center">
+                <p class="mb-0">© 2024 Movie Ticket Management System Project | Data Analytics with Python</p>
+                <p class="mt-2">
+                    <small>
+                        Note: For full interactive experience with charts and database, please run the Jupyter notebook locally.
+                        GitHub only displays static content.
+                    </small>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     
-    <div style="margin-top: 40px; text-align: center; color: #666;">
-        <p>Note: GitHub cannot execute Jupyter notebooks or display Plotly charts. 
-        For full interactive experience, run locally.</p>
-        <p>View static notebook outputs: 
-        <a href="https://nbviewer.org/github/your-username/your-repo/blob/main/Movie%20Ticket%20Management%20System.ipynb">nbviewer link</a></p>
-    </div>
+    <!-- Smooth Scroll -->
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 70,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
