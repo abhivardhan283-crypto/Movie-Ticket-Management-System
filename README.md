@@ -34,3 +34,4 @@ Interactive visualizations include:
 ### Prerequisites
 ```bash
 pip install pandas numpy sqlite3 matplotlib seaborn plotly"# Movie-Ticket-Management-System" 
+"# Movie-Ticket-Management-System" 
