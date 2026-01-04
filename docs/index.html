@@ -1,332 +1,405 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
+    <title>Movie Ticket Management System Demo</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🎬 Movie Ticket Management System</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            margin: 0; 
+            padding: 20px; 
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
-            padding: 20px;
+            color: white;
         }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
+        .container { 
+            max-width: 1200px; 
+            margin: 0 auto; 
             background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-        }
-        
-        header {
-            text-align: center;
-            margin-bottom: 40px;
-            padding-bottom: 20px;
-            border-bottom: 3px solid #667eea;
-        }
-        
-        h1 {
-            color: #333;
-            font-size: 2.8em;
-            margin-bottom: 10px;
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .tagline {
-            color: #666;
-            font-size: 1.2em;
-            margin-bottom: 30px;
-        }
-        
-        .dashboard {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-            margin-bottom: 40px;
-        }
-        
-        .card {
-            background: white;
-            border-radius: 15px;
-            padding: 25px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 1px solid #eaeaea;
-        }
-        
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
-        }
-        
-        .card h2 {
-            color: #667eea;
-            margin-bottom: 20px;
-            font-size: 1.5em;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .card h2 i {
-            font-size: 1.2em;
-        }
-        
-        .metrics-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 15px;
-        }
-        
-        .metric {
-            text-align: center;
-            padding: 15px;
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            border-radius: 10px;
-            color: white;
-        }
-        
-        .metric-value {
-            font-size: 1.8em;
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-        
-        .metric-label {
-            font-size: 0.9em;
-            opacity: 0.9;
-        }
-        
-        .features {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 15px;
             padding: 30px;
-            margin-top: 30px;
-            color: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            color: #333;
         }
-        
-        .features h2 {
-            text-align: center;
-            margin-bottom: 25px;
-            font-size: 2em;
+        h1 { 
+            color: #2c3e50; 
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
         }
-        
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
-        
-        .feature {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 20px;
-            border-radius: 10px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-        
-        .feature h3 {
-            margin-bottom: 10px;
-            font-size: 1.3em;
-        }
-        
-        .buttons {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 40px;
-            flex-wrap: wrap;
-        }
-        
-        .btn {
-            padding: 15px 30px;
+        .btn { 
+            display: inline-block; 
+            padding: 12px 24px; 
             background: linear-gradient(45deg, #667eea, #764ba2);
-            color: white;
-            text-decoration: none;
-            border-radius: 10px;
+            color: white; 
+            text-decoration: none; 
+            border-radius: 5px;
+            margin: 10px 5px;
             font-weight: bold;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: transform 0.3s;
             border: none;
             cursor: pointer;
-            font-size: 1.1em;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
         }
-        
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        .btn:hover { 
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
-        
         .btn-secondary {
             background: linear-gradient(45deg, #f093fb, #f5576c);
         }
-        
-        .btn-secondary:hover {
-            box-shadow: 0 10px 25px rgba(245, 87, 108, 0.4);
+        .result-img {
+            width: 100%;
+            border-radius: 10px;
+            margin: 20px 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border: 2px solid #e0e0e0;
         }
-        
-        .visualization-placeholder {
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border: 1px solid #e0e0e0;
+            transition: transform 0.3s;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .demo-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin: 30px 0;
+        }
+        .demo-section h3 {
+            color: white;
+            margin-top: 0;
+        }
+        .feature-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 20px 0;
+        }
+        .feature-tag {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+        }
+        .github-corner {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 80px;
+            height: 80px;
+            fill: #764ba2;
+            color: white;
+        }
+        .github-corner:hover .octo-arm {
+            animation: octocat-wave 560ms ease-in-out;
+        }
+        @keyframes octocat-wave {
+            0%, 100% { transform: rotate(0); }
+            20%, 60% { transform: rotate(-25deg); }
+            40%, 80% { transform: rotate(10deg); }
+        }
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+            margin: 20px 0;
+            padding: 20px;
             background: #f8f9fa;
             border-radius: 10px;
-            height: 200px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-top: 15px;
-            color: #666;
-            font-style: italic;
-            border: 2px dashed #dee2e6;
         }
-        
-        @media (max-width: 768px) {
-            .container {
-                padding: 20px;
-            }
-            
-            h1 {
-                font-size: 2em;
-            }
-            
-            .dashboard {
-                grid-template-columns: 1fr;
-            }
-            
-            .buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .btn {
-                width: 100%;
-                justify-content: center;
-            }
+        .stat-item {
+            flex: 1;
         }
-        
-        .footer {
-            text-align: center;
-            margin-top: 40px;
-            padding-top: 20px;
-            border-top: 1px solid #eaeaea;
+        .stat-number {
+            font-size: 2em;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 5px;
+        }
+        .stat-label {
             color: #666;
             font-size: 0.9em;
         }
+        .highlight {
+            background: linear-gradient(120deg, #a8edea 0%, #fed6e3 100%);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 5px solid #667eea;
+        }
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+            .stats {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
     </style>
+    <!-- GitHub Corners -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.2.3/gh-fork-ribbon.min.css" />
 </head>
 <body>
+    <!-- GitHub Ribbon -->
+    <a class="github-fork-ribbon" href="https://github.com/abhivardhan283-crypto/movie-ticket-system" data-ribbon="Fork me on GitHub" title="Fork me on GitHub">Fork me on GitHub</a>
+    
     <div class="container">
-        <header>
-            <h1>🎬 Movie Ticket Management System</h1>
-            <p class="tagline">A comprehensive analytics and management platform for movie theatres</p>
-        </header>
+        <h1>🎬 Movie Ticket Management System Demo</h1>
+        <h3>Interactive Demo for Data Analyst / Data Scientist Portfolio</h3>
         
-        <section class="dashboard">
-            <div class="card">
-                <h2>📊 System Overview</h2>
-                <div class="metrics-grid">
-                    <div class="metric">
-                        <div class="metric-value">14</div>
-                        <div class="metric-label">Movies</div>
-                    </div>
-                    <div class="metric">
-                        <div class="metric-value">8</div>
-                        <div class="metric-label">Theatres</div>
-                    </div>
-                    <div class="metric">
-                        <div class="metric-value">41</div>
-                        <div class="metric-label">Screens</div>
-                    </div>
-                    <div class="metric">
-                        <div class="metric-value">50</div>
-                        <div class="metric-label">Customers</div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="card">
-                <h2>💰 Revenue Analytics</h2>
-                <div class="visualization-placeholder">
-                    Revenue Trends Visualization
-                </div>
-                <p style="margin-top: 15px; color: #666;">
-                    Interactive dashboard showing revenue performance across movies, theatres, and time slots.
-                </p>
-            </div>
-            
-            <div class="card">
-                <h2>📈 Performance Metrics</h2>
-                <div class="metrics-grid">
-                    <div class="metric">
-                        <div class="metric-value">₹209K</div>
-                        <div class="metric-label">Net Revenue</div>
-                    </div>
-                    <div class="metric">
-                        <div class="metric-value">201</div>
-                        <div class="metric-label">Bookings</div>
-                    </div>
-                    <div class="metric">
-                        <div class="metric-value">44%</div>
-                        <div class="metric-label">Afternoon Share</div>
-                    </div>
-                    <div class="metric">
-                        <div class="metric-value">26%</div>
-                        <div class="metric-label">IMAX Revenue</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <section class="features">
-            <h2>✨ Key Features</h2>
-            <div class="features-grid">
-                <div class="feature">
-                    <h3>🎯 Database Management</h3>
-                    <p>7 normalized tables with SQLite backend for efficient data storage and retrieval.</p>
-                </div>
-                <div class="feature">
-                    <h3>📊 Analytics Dashboard</h3>
-                    <p>Interactive visualizations using Plotly for comprehensive revenue and performance analysis.</p>
-                </div>
-                <div class="feature">
-                    <h3>🔄 Sample Data Generation</h3>
-                    <p>Automated generation of realistic sample data for testing and demonstration.</p>
-                </div>
-                <div class="feature">
-                    <h3>🔍 ER Diagram</h3>
-                    <p>Visual representation of database schema relationships and structure.</p>
-                </div>
-            </div>
-        </section>
-        
-        <div class="buttons">
-            <a href="Movie_Ticket_Management_System.ipynb" class="btn" download>
-                📥 Download Notebook
-            </a>
-            <a href="https://github.com/yourusername/movie-ticket-system" class="btn btn-secondary" target="_blank">
-                🌟 View on GitHub
-            </a>
-            <a href="#documentation" class="btn">
-                📚 Documentation
-            </a>
+        <div class="highlight">
+            <p><strong>🚀 Real-time Analytics Dashboard with 7-Normalized Database Schema</strong></p>
+            <p>Comprehensive movie ticket booking system with revenue analytics, customer insights, and interactive visualizations using Python, SQLite, and Plotly.</p>
         </div>
         
-        <div class="footer">
-            <p>Movie Ticket Management System © 2024 | Built with Python, SQLite, and Plotly</p>
-            <p>For educational and demonstration purposes</p>
+        <div class="stats">
+            <div class="stat-item">
+                <div class="stat-number">7</div>
+                <div class="stat-label">Database Tables</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">200+</div>
+                <div class="stat-label">Sample Bookings</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">₹209K</div>
+                <div class="stat-label">Generated Revenue</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">50+</div>
+                <div class="stat-label">Customer Profiles</div>
+            </div>
+        </div>
+        
+        <div class="demo-section">
+            <h3>🚀 Live Interactive Demo</h3>
+            <div class="grid">
+                <div class="card" style="background: rgba(255, 255, 255, 0.1); color: white;">
+                    <h4>Run in Browser</h4>
+                    <a href="https://mybinder.org/v2/gh/abhivardhan283-crypto/movie-ticket-system/main?filepath=Movie_Ticket_Management_System.ipynb" class="btn" target="_blank">
+                        Launch Interactive Notebook
+                    </a>
+                    <p>Run the complete system in your browser with Binder - no installation required!</p>
+                </div>
+                
+                <div class="card" style="background: rgba(255, 255, 255, 0.1); color: white;">
+                    <h4>View Results</h4>
+                    <a href="https://nbviewer.org/github/abhivardhan283-crypto/movie-ticket-system/blob/main/Movie_Ticket_Management_System.ipynb" class="btn" target="_blank">
+                        View Static Notebook
+                    </a>
+                    <p>See all outputs, visualizations, and analytics without running the code</p>
+                </div>
+            </div>
+        </div>
+        
+        <h2>📊 Interactive Visualizations</h2>
+        <div class="grid">
+            <div class="card">
+                <h4>Revenue Analytics Dashboard</h4>
+                <div style="background: #f0f0f0; height: 200px; border-radius: 5px; display: flex; align-items: center; justify-content: center; color: #666;">
+                    <p>Interactive Plotly Dashboard with Revenue Trends</p>
+                </div>
+                <p>Real-time revenue tracking across movies, theatres, and time slots</p>
+            </div>
+            
+            <div class="card">
+                <h4>Customer Segmentation</h4>
+                <div style="background: #f0f0f0; height: 200px; border-radius: 5px; display: flex; align-items: center; justify-content: center; color: #666;">
+                    <p>Customer Type Analysis (Regular/Premium/Student/Senior)</p>
+                </div>
+                <p>Behavior analysis across different customer segments</p>
+            </div>
+            
+            <div class="card">
+                <h4>Time Slot Optimization</h4>
+                <div style="background: #f0f0f0; height: 200px; border-radius: 5px; display: flex; align-items: center; justify-content: center; color: #666;">
+                    <p>Peak Hour Analysis & Revenue by Time Slots</p>
+                </div>
+                <p>Identify optimal show timings for maximum revenue</p>
+            </div>
+        </div>
+        
+        <h2>📈 Sample Analytics Results</h2>
+        <div class="grid">
+            <div class="card">
+                <h4>Revenue by Movie</h4>
+                <div style="background: #f0f0f0; height: 250px; border-radius: 5px; display: flex; align-items: center; justify-content: center; color: #666;">
+                    <p>Top Performing Movies Revenue Chart</p>
+                </div>
+                <p>Visual ranking of movies by revenue generation</p>
+            </div>
+            
+            <div class="card">
+                <h4>Theatre Performance</h4>
+                <div style="background: #f0f0f0; height: 250px; border-radius: 5px; display: flex; align-items: center; justify-content: center; color: #666;">
+                    <p>Theatre Revenue & Profitability Analysis</p>
+                </div>
+                <p>Compare theatre performance across locations</p>
+            </div>
+        </div>
+        
+        <h2>📁 Project Files & Resources</h2>
+        <div class="grid">
+            <div class="card">
+                <h4>Source Code</h4>
+                <a href="https://github.com/abhivardhan283-crypto/movie-ticket-system" class="btn" target="_blank">
+                    <span>📂 GitHub Repository</span>
+                </a>
+                <p>Complete source code with detailed documentation</p>
+                <div class="feature-list">
+                    <span class="feature-tag">🎯 Database Schema</span>
+                    <span class="feature-tag">📊 Analytics</span>
+                    <span class="feature-tag">📈 Visualizations</span>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h4>Download</h4>
+                <a href="Movie_Ticket_Management_System.ipynb" class="btn" download>
+                    <span>⬇️ Download Notebook</span>
+                </a>
+                <p>Get the Jupyter notebook file for local execution</p>
+                <a href="requirements.txt" class="btn btn-secondary" download>
+                    <span>📋 Requirements.txt</span>
+                </a>
+                <p>All dependencies in one file</p>
+            </div>
+            
+            <div class="card">
+                <h4>Live Demo</h4>
+                <a href="https://abhivardhan283-crypto.github.io/movie-ticket-system/" class="btn btn-secondary" target="_blank">
+                    <span>🌐 Web Dashboard</span>
+                </a>
+                <p>Interactive web interface for the system</p>
+                <a href="README.md" class="btn" download>
+                    <span>📖 Documentation</span>
+                </a>
+                <p>Detailed setup and usage instructions</p>
+            </div>
+        </div>
+        
+        <h2>🔧 Technologies Stack</h2>
+        <div class="grid">
+            <div class="card">
+                <h4>📊 Data Analysis</h4>
+                <p><strong>Pandas</strong> - Data manipulation</p>
+                <p><strong>NumPy</strong> - Numerical computing</p>
+                <p><strong>SQLite</strong> - Database management</p>
+            </div>
+            
+            <div class="card">
+                <h4>📈 Visualization</h4>
+                <p><strong>Plotly</strong> - Interactive charts</p>
+                <p><strong>Matplotlib</strong> - Static visualizations</p>
+                <p><strong>Seaborn</strong> - Statistical graphics</p>
+            </div>
+            
+            <div class="card">
+                <h4>🚀 Development</h4>
+                <p><strong>Jupyter Notebook</strong> - Interactive coding</p>
+                <p><strong>Python 3.8+</strong> - Core programming</p>
+                <p><strong>Git</strong> - Version control</p>
+            </div>
+        </div>
+        
+        <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 30px 0; border-left: 5px solid #667eea;">
+            <h4 style="color: #2c3e50; margin-top: 0;">🎯 Key Features Implemented</h4>
+            <ul style="columns: 2; column-gap: 40px;">
+                <li>7-Normalized Database Schema Design</li>
+                <li>Automated Sample Data Generation</li>
+                <li>Revenue Analytics & Forecasting</li>
+                <li>Customer Segmentation Analysis</li>
+                <li>Time Slot Optimization</li>
+                <li>Theatre Performance Metrics</li>
+                <li>Payment Method Analysis</li>
+                <li>Interactive Dashboard with Plotly</li>
+                <li>ER Diagram Visualization</li>
+                <li>Comprehensive SQL Queries</li>
+            </ul>
+        </div>
+        
+        <div style="text-align: center; margin-top: 40px; padding-top: 20px; border-top: 2px solid #e0e0e0;">
+            <h3>👨‍💻 Developer Information</h3>
+            <p><strong>Name:</strong> Abhivardhan</p>
+            <p><strong>GitHub:</strong> <a href="https://github.com/abhivardhan283-crypto" style="color: #667eea; text-decoration: none;">@abhivardhan283-crypto</a></p>
+            <p><strong>Project:</strong> Data Analyst / Data Scientist Portfolio Project</p>
+            <p><strong>Status:</strong> Complete & Production Ready</p>
+            
+            <div style="margin-top: 20px;">
+                <a href="https://github.com/abhivardhan283-crypto" class="btn" target="_blank">
+                    View GitHub Profile
+                </a>
+                <button onclick="copyEmail()" class="btn btn-secondary">
+                    Copy Contact Email
+                </button>
+            </div>
+        </div>
+        
+        <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee; color: #666; font-size: 0.9em;">
+            <p>🎬 Movie Ticket Management System Demo | Created for Portfolio & Job Applications</p>
+            <p>© 2024 | MIT License | All visualizations generated from actual system data</p>
         </div>
     </div>
+
+    <script>
+        // Copy email to clipboard
+        function copyEmail() {
+            const email = 'abhivardhan283-crypto@github';
+            navigator.clipboard.writeText(email).then(() => {
+                alert('GitHub username copied to clipboard: ' + email);
+            });
+        }
+        
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Add animation to cards on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        // Apply fade-in animation to cards
+        document.querySelectorAll('.card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(card);
+        });
+    </script>
 </body>
 </html>
