@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Movie Ticket Management System Demo</title>
+    <title>Movie Ticket Management System</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
@@ -14,7 +14,7 @@
             color: white;
         }
         .container { 
-            max-width: 1200px; 
+            max-width: 1000px; 
             margin: 0 auto; 
             background: rgba(255, 255, 255, 0.95);
             padding: 30px;
@@ -30,29 +30,23 @@
         .btn { 
             display: inline-block; 
             padding: 12px 24px; 
-            background: linear-gradient(45deg, #667eea, #764ba2);
+            background: linear-gradient(45deg, #3498db, #2ecc71);
             color: white; 
             text-decoration: none; 
             border-radius: 5px;
             margin: 10px 5px;
             font-weight: bold;
             transition: transform 0.3s;
-            border: none;
-            cursor: pointer;
         }
         .btn:hover { 
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-        .btn-secondary {
-            background: linear-gradient(45deg, #f093fb, #f5576c);
         }
         .result-img {
             width: 100%;
             border-radius: 10px;
             margin: 20px 0;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            border: 2px solid #e0e0e0;
         }
         .grid {
             display: grid;
@@ -65,341 +59,126 @@
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            border: 1px solid #e0e0e0;
-            transition: transform 0.3s;
-        }
-        .card:hover {
-            transform: translateY(-5px);
-        }
-        .demo-section {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 30px;
-            border-radius: 10px;
-            margin: 30px 0;
-        }
-        .demo-section h3 {
-            color: white;
-            margin-top: 0;
-        }
-        .feature-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin: 20px 0;
-        }
-        .feature-tag {
-            background: rgba(255, 255, 255, 0.2);
-            padding: 8px 15px;
-            border-radius: 20px;
-            font-size: 14px;
-        }
-        .github-corner {
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 80px;
-            height: 80px;
-            fill: #764ba2;
-            color: white;
-        }
-        .github-corner:hover .octo-arm {
-            animation: octocat-wave 560ms ease-in-out;
-        }
-        @keyframes octocat-wave {
-            0%, 100% { transform: rotate(0); }
-            20%, 60% { transform: rotate(-25deg); }
-            40%, 80% { transform: rotate(10deg); }
-        }
-        .stats {
-            display: flex;
-            justify-content: space-around;
-            text-align: center;
-            margin: 20px 0;
-            padding: 20px;
-            background: #f8f9fa;
-            border-radius: 10px;
-        }
-        .stat-item {
-            flex: 1;
-        }
-        .stat-number {
-            font-size: 2em;
-            font-weight: bold;
-            color: #667eea;
-            margin-bottom: 5px;
-        }
-        .stat-label {
-            color: #666;
-            font-size: 0.9em;
-        }
-        .highlight {
-            background: linear-gradient(120deg, #a8edea 0%, #fed6e3 100%);
-            padding: 20px;
-            border-radius: 10px;
-            margin: 20px 0;
-            border-left: 5px solid #667eea;
-        }
-        @media (max-width: 768px) {
-            .grid {
-                grid-template-columns: 1fr;
-            }
-            .stats {
-                flex-direction: column;
-                gap: 20px;
-            }
         }
     </style>
-    <!-- GitHub Corners -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.2.3/gh-fork-ribbon.min.css" />
 </head>
 <body>
-    <!-- GitHub Ribbon -->
-    <a class="github-fork-ribbon" href="https://github.com/abhivardhan283-crypto/movie-ticket-system" data-ribbon="Fork me on GitHub" title="Fork me on GitHub">Fork me on GitHub</a>
-    
     <div class="container">
-        <h1>🎬 Movie Ticket Management System Demo</h1>
-        <h3>Interactive Demo for Data Analyst / Data Scientist Portfolio</h3>
+        <h1>🎬 Movie Ticket Management System</h1>
+        <h3>Interactive Demo for Data Analyst Task</h3>
         
-        <div class="highlight">
-            <p><strong>🚀 Real-time Analytics Dashboard with 7-Normalized Database Schema</strong></p>
-            <p>Comprehensive movie ticket booking system with revenue analytics, customer insights, and interactive visualizations using Python, SQLite, and Plotly.</p>
-        </div>
+        <p>This project implements a comprehensive movie ticket booking and management system with revenue analytics, database management, and interactive visualizations.</p>
         
-        <div class="stats">
-            <div class="stat-item">
-                <div class="stat-number">7</div>
-                <div class="stat-label">Database Tables</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">200+</div>
-                <div class="stat-label">Sample Bookings</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">₹209K</div>
-                <div class="stat-label">Generated Revenue</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">50+</div>
-                <div class="stat-label">Customer Profiles</div>
-            </div>
-        </div>
-        
-        <div class="demo-section">
-            <h3>🚀 Live Interactive Demo</h3>
-            <div class="grid">
-                <div class="card" style="background: rgba(255, 255, 255, 0.1); color: white;">
-                    <h4>Run in Browser</h4>
-                    <a href="https://mybinder.org/v2/gh/abhivardhan283-crypto/movie-ticket-system/main?filepath=Movie_Ticket_Management_System.ipynb" class="btn" target="_blank">
-                        Launch Interactive Notebook
-                    </a>
-                    <p>Run the complete system in your browser with Binder - no installation required!</p>
-                </div>
-                
-                <div class="card" style="background: rgba(255, 255, 255, 0.1); color: white;">
-                    <h4>View Results</h4>
-                    <a href="https://nbviewer.org/github/abhivardhan283-crypto/movie-ticket-system/blob/main/Movie_Ticket_Management_System.ipynb" class="btn" target="_blank">
-                        View Static Notebook
-                    </a>
-                    <p>See all outputs, visualizations, and analytics without running the code</p>
-                </div>
-            </div>
-        </div>
-        
-        <h2>📊 Interactive Visualizations</h2>
         <div class="grid">
             <div class="card">
-                <h4>Revenue Analytics Dashboard</h4>
-                <div style="background: #f0f0f0; height: 200px; border-radius: 5px; display: flex; align-items: center; justify-content: center; color: #666;">
-                    <p>Interactive Plotly Dashboard with Revenue Trends</p>
-                </div>
-                <p>Real-time revenue tracking across movies, theatres, and time slots</p>
+                <h3>🚀 Live Demo</h3>
+                <a href="https://mybinder.org/v2/gh/abhivardhan283-crypto/movie-ticket-system/main?filepath=Movie_Ticket_Management_System.ipynb" class="btn">
+                    Run Interactive Notebook
+                </a>
+                <p>Run the notebook in your browser with Binder (no installation required)</p>
             </div>
             
             <div class="card">
-                <h4>Customer Segmentation</h4>
-                <div style="background: #f0f0f0; height: 200px; border-radius: 5px; display: flex; align-items: center; justify-content: center; color: #666;">
-                    <p>Customer Type Analysis (Regular/Premium/Student/Senior)</p>
-                </div>
-                <p>Behavior analysis across different customer segments</p>
-            </div>
-            
-            <div class="card">
-                <h4>Time Slot Optimization</h4>
-                <div style="background: #f0f0f0; height: 200px; border-radius: 5px; display: flex; align-items: center; justify-content: center; color: #666;">
-                    <p>Peak Hour Analysis & Revenue by Time Slots</p>
-                </div>
-                <p>Identify optimal show timings for maximum revenue</p>
+                <h3>📊 View Results</h3>
+                <a href="https://nbviewer.org/github/abhivardhan283-crypto/movie-ticket-system/blob/main/Movie_Ticket_Management_System.ipynb" class="btn">
+                    View Static Notebook
+                </a>
+                <p>View the notebook with all outputs and visualizations</p>
             </div>
         </div>
         
-        <h2>📈 Sample Analytics Results</h2>
+        <h2>📈 Sample Results</h2>
         <div class="grid">
             <div class="card">
-                <h4>Revenue by Movie</h4>
-                <div style="background: #f0f0f0; height: 250px; border-radius: 5px; display: flex; align-items: center; justify-content: center; color: #666;">
-                    <p>Top Performing Movies Revenue Chart</p>
-                </div>
-                <p>Visual ranking of movies by revenue generation</p>
+                <h4>Revenue Dashboard</h4>
+                <img src="https://raw.githubusercontent.com/abhivardhan283-crypto/movie-ticket-system/main/images/revenue_dashboard.png" alt="Revenue Dashboard" class="result-img">
+                <p>Interactive revenue analytics dashboard showing performance metrics</p>
             </div>
-            
             <div class="card">
-                <h4>Theatre Performance</h4>
-                <div style="background: #f0f0f0; height: 250px; border-radius: 5px; display: flex; align-items: center; justify-content: center; color: #666;">
-                    <p>Theatre Revenue & Profitability Analysis</p>
-                </div>
-                <p>Compare theatre performance across locations</p>
+                <h4>Database ER Diagram</h4>
+                <img src="https://raw.githubusercontent.com/abhivardhan283-crypto/movie-ticket-system/main/images/er_diagram.png" alt="ER Diagram" class="result-img">
+                <p>Complete database schema with 7 normalized tables</p>
             </div>
         </div>
         
-        <h2>📁 Project Files & Resources</h2>
+        <h2>📁 Project Files</h2>
         <div class="grid">
             <div class="card">
                 <h4>Source Code</h4>
-                <a href="https://github.com/abhivardhan283-crypto/movie-ticket-system" class="btn" target="_blank">
-                    <span>📂 GitHub Repository</span>
+                <a href="https://github.com/abhivardhan283-crypto/movie-ticket-system" class="btn">
+                    GitHub Repository
                 </a>
-                <p>Complete source code with detailed documentation</p>
-                <div class="feature-list">
-                    <span class="feature-tag">🎯 Database Schema</span>
-                    <span class="feature-tag">📊 Analytics</span>
-                    <span class="feature-tag">📈 Visualizations</span>
-                </div>
+                <p>View complete source code and documentation</p>
             </div>
             
             <div class="card">
                 <h4>Download</h4>
                 <a href="Movie_Ticket_Management_System.ipynb" class="btn" download>
-                    <span>⬇️ Download Notebook</span>
+                    Download Notebook
                 </a>
-                <p>Get the Jupyter notebook file for local execution</p>
-                <a href="requirements.txt" class="btn btn-secondary" download>
-                    <span>📋 Requirements.txt</span>
-                </a>
-                <p>All dependencies in one file</p>
-            </div>
-            
-            <div class="card">
-                <h4>Live Demo</h4>
-                <a href="https://abhivardhan283-crypto.github.io/movie-ticket-system/" class="btn btn-secondary" target="_blank">
-                    <span>🌐 Web Dashboard</span>
-                </a>
-                <p>Interactive web interface for the system</p>
-                <a href="README.md" class="btn" download>
-                    <span>📖 Documentation</span>
-                </a>
-                <p>Detailed setup and usage instructions</p>
+                <p>Download the Jupyter notebook file</p>
             </div>
         </div>
         
-        <h2>🔧 Technologies Stack</h2>
+        <h2>🎯 Key Features</h2>
         <div class="grid">
             <div class="card">
-                <h4>📊 Data Analysis</h4>
-                <p><strong>Pandas</strong> - Data manipulation</p>
-                <p><strong>NumPy</strong> - Numerical computing</p>
-                <p><strong>SQLite</strong> - Database management</p>
+                <h4>🎭 Comprehensive Database</h4>
+                <ul>
+                    <li>7 normalized SQLite tables</li>
+                    <li>Movies, Theatres, Screens, Shows tables</li>
+                    <li>Customers, Bookings, Payments tables</li>
+                    <li>Foreign key relationships</li>
+                </ul>
             </div>
             
             <div class="card">
-                <h4>📈 Visualization</h4>
-                <p><strong>Plotly</strong> - Interactive charts</p>
-                <p><strong>Matplotlib</strong> - Static visualizations</p>
-                <p><strong>Seaborn</strong> - Statistical graphics</p>
+                <h4>💰 Revenue Analytics</h4>
+                <ul>
+                    <li>Real-time revenue tracking</li>
+                    <li>Revenue by movie, theatre, time slot</li>
+                    <li>Customer segmentation analysis</li>
+                    <li>Payment method analytics</li>
+                </ul>
+            </div>
+        </div>
+        
+        <h2>🔧 Technologies Used</h2>
+        <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; margin: 20px 0;">
+            <p><strong>Python Libraries:</strong> pandas, numpy, sqlite3, matplotlib, seaborn, plotly</p>
+            <p><strong>Database:</strong> SQLite with normalized schema</p>
+            <p><strong>Visualization:</strong> Interactive Plotly dashboards, Matplotlib charts</p>
+            <p><strong>Analysis:</strong> Revenue analytics, customer segmentation, time-series analysis</p>
+        </div>
+        
+        <h2>📊 System Metrics</h2>
+        <div class="grid">
+            <div class="card">
+                <h4>Database Statistics</h4>
+                <p>✅ 14 movies with ratings and genres</p>
+                <p>✅ 8 theatres across multiple cities</p>
+                <p>✅ 41 screens (IMAX, 3D, 4DX, VIP, Standard)</p>
+                <p>✅ 50 customers with loyalty programs</p>
+                <p>✅ 173 shows with dynamic pricing</p>
+                <p>✅ 228 bookings with real-time tracking</p>
             </div>
             
             <div class="card">
-                <h4>🚀 Development</h4>
-                <p><strong>Jupyter Notebook</strong> - Interactive coding</p>
-                <p><strong>Python 3.8+</strong> - Core programming</p>
-                <p><strong>Git</strong> - Version control</p>
+                <h4>Revenue Analytics</h4>
+                <p>💰 Gross Revenue: ₹209,346</p>
+                <p>📈 Net Revenue: ₹209,346</p>
+                <p>🎟️ Total Bookings: 201</p>
+                <p>🏆 Top Revenue Source: Afternoon shows (44.2%)</p>
+                <p>🎬 Most Popular: IMAX screens (25.8% revenue)</p>
+                <p>💳 Preferred Payment: UPI (35%)</p>
             </div>
         </div>
         
-        <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 30px 0; border-left: 5px solid #667eea;">
-            <h4 style="color: #2c3e50; margin-top: 0;">🎯 Key Features Implemented</h4>
-            <ul style="columns: 2; column-gap: 40px;">
-                <li>7-Normalized Database Schema Design</li>
-                <li>Automated Sample Data Generation</li>
-                <li>Revenue Analytics & Forecasting</li>
-                <li>Customer Segmentation Analysis</li>
-                <li>Time Slot Optimization</li>
-                <li>Theatre Performance Metrics</li>
-                <li>Payment Method Analysis</li>
-                <li>Interactive Dashboard with Plotly</li>
-                <li>ER Diagram Visualization</li>
-                <li>Comprehensive SQL Queries</li>
-            </ul>
-        </div>
-        
-        <div style="text-align: center; margin-top: 40px; padding-top: 20px; border-top: 2px solid #e0e0e0;">
-            <h3>👨‍💻 Developer Information</h3>
-            <p><strong>Name:</strong> Abhivardhan</p>
-            <p><strong>GitHub:</strong> <a href="https://github.com/abhivardhan283-crypto" style="color: #667eea; text-decoration: none;">@abhivardhan283-crypto</a></p>
-            <p><strong>Project:</strong> Data Analyst / Data Scientist Portfolio Project</p>
-            <p><strong>Status:</strong> Complete & Production Ready</p>
-            
-            <div style="margin-top: 20px;">
-                <a href="https://github.com/abhivardhan283-crypto" class="btn" target="_blank">
-                    View GitHub Profile
-                </a>
-                <button onclick="copyEmail()" class="btn btn-secondary">
-                    Copy Contact Email
-                </button>
-            </div>
-        </div>
-        
-        <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee; color: #666; font-size: 0.9em;">
-            <p>🎬 Movie Ticket Management System Demo | Created for Portfolio & Job Applications</p>
-            <p>© 2024 | MIT License | All visualizations generated from actual system data</p>
+        <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee;">
+            <p>Created for Data Analyst Position Application</p>
+            <p>👨‍💻 Developer: Abhivardhan (GitHub: abhivardhan283-crypto)</p>
+            <p>📍 Portfolio Project: Movie Ticket Management System</p>
         </div>
     </div>
-
-    <script>
-        // Copy email to clipboard
-        function copyEmail() {
-            const email = 'abhivardhan283-crypto@github';
-            navigator.clipboard.writeText(email).then(() => {
-                alert('GitHub username copied to clipboard: ' + email);
-            });
-        }
-        
-        // Smooth scroll for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-        
-        // Add animation to cards on scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-        
-        // Apply fade-in animation to cards
-        document.querySelectorAll('.card').forEach(card => {
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(20px)';
-            card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-            observer.observe(card);
-        });
-    </script>
 </body>
 </html>
